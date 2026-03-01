@@ -31,7 +31,7 @@ export default function Header() {
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
       <img
-        src="./assets/profile-img.png"
+        src="/assets/user-image.png"
         alt="Profile"
         className="rounded-full w-32"
       />
@@ -39,7 +39,7 @@ export default function Header() {
       <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
         Hi! I&apos;m Kiran Pokhrel
         <img
-          src="./assets/hand-icon.png"
+          src="/assets/hand-icon.png"
           alt="Wave"
           className="w-6 mb-1"
         />
@@ -61,20 +61,20 @@ export default function Header() {
         >
           contact me
           <img
-            src="./assets/right-arrow-white.png"
+            src="/assets/right-arrow-white.png"
             alt=""
             className="w-4"
           />
         </a>
 
         <a
-          href="./assets/dev-icon.png"
+          href="/assets/dev-icon.png"
           download
           className="px-10 py-2.5 rounded-full border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover flex items-center gap-2 bg-white dark:bg-transparent dark:text-white"
         >
           my resume
           <img
-            src="./assets/download-icon.png"
+            src="/assets/download-icon.png"
             alt=""
             className="w-4 dark:invert"
           />

@@ -28,30 +28,30 @@ export default function About() {
         "opacity-0 translate-y-14 scale-[0.96] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
     const tools = [
-        { name: "vscode", icon: "./assets/vscode.png" },
-        { name: "firebase", icon: "./assets/firebase.png" },
-        { name: "mongodb", icon: "./assets/mongodb.png" },
-        { name: "figma", icon: "./assets/figma.png" },
-        { name: "git", icon: "./assets/git.png" },
+        { name: "vscode", icon: "/assets/vscode.png" },
+        { name: "firebase", icon: "/assets/firebase.png" },
+        { name: "mongodb", icon: "/assets/mongodb.png" },
+        { name: "figma", icon: "/assets/figma.png" },
+        { name: "git", icon: "/assets/git.png" },
     ];
 
     const data = [
         {
             name: "Languages",
-            icon1: "./assets/code-icon.png",
-            icon2: "./assets/code-icon-dark.png",
+            icon1: "/assets/code-icon.png",
+            icon2: "/assets/code-icon-dark.png",
             description: "HTML, CSS, JavaScript",
         },
         {
             name: "Education",
-            icon1: "./assets/edu-icon.png",
-            icon2: "./assets/edu-icon-dark.png",
+            icon1: "/assets/edu-icon.png",
+            icon2: "/assets/edu-icon-dark.png",
             description: "Bachelor of Business Studies",
         },
         {
             name: "Employment",
-            icon1: "./assets/project-icon.png",
-            icon2: "./assets/project-icon-dark.png",
+            icon1: "/assets/project-icon.png",
+            icon2: "/assets/project-icon-dark.png",
             description: "Oli & Associates Pvt. Ltd.",
         },
     ];
@@ -80,7 +80,7 @@ export default function About() {
             points: [
                 "Used Salesforce CRM to track student profiles and application status",
                 "Maintained accurate student and compliance records",
-                "Helped in handeling visa documentation and compliance requirements",
+                "Helped in handling visa documentation and compliance requirements",
                 "Prepared and submitted GS documentation",
             ],
         },
@@ -112,12 +112,12 @@ export default function About() {
                 {/* LEFT: Sticky Image */}
                 <div className="flex-shrink-0 lg:sticky lg:top-24 self-start">
                     <img
-                        src="./assets/user-image.png"
+                        src="/assets/user-image.png"
                         alt="User"
                         className="w-64 sm:w-80 rounded-3xl"
                     />
                     <img
-                        src="./assets/dev-icon.png"
+                        src="/assets/dev-icon.png"
                         alt="Dev Logo"
                         className="w-10 sm:w-12 mt-3"
                     />
