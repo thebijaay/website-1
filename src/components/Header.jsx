@@ -60,7 +60,7 @@ export default function Header() {
           href="#contact"
           className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
         >
-          contact me
+          contact Me
           <img
             src="/assets/right-arrow-white.png"
             alt=""
@@ -69,7 +69,7 @@ export default function Header() {
         </a>
 
         <a
-          href="/assets/dev-icon.png"
+          href="/assets/Kiran_Resume"
           download
           className="px-10 py-2.5 rounded-full border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover flex items-center gap-2 bg-white dark:bg-transparent dark:text-white"
         >
