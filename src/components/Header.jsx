@@ -38,7 +38,7 @@ export default function Header() {
       />
 
       <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
-        Hi! I&apos;m Kiran Pokhrel
+        Hi! I'm Kiran Pokhrel
         <img
           src="/assets/hand-icon.png"
           alt="Wave"
@@ -58,9 +58,9 @@ export default function Header() {
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
         <a
           href="#contact"
-          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
+          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2"
         >
-          contact me
+          Contact Me
           <img
             src="/assets/right-arrow-white.png"
             alt=""
@@ -69,15 +69,15 @@ export default function Header() {
         </a>
 
         <a
-          href="/assets/Kiran_Pokhrel_CV.pdf"
-          download="Kiran_Pokhrel_CV.pdf"
-          className="px-10 py-2.5 rounded-full border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover flex items-center gap-2 bg-white dark:bg-transparent dark:text-white"
+          href="/assets/kiran-cv.pdf"
+          download
+          className="px-10 py-2.5 rounded-full border border-gray-300 hover:bg-slate-100 flex items-center gap-2 bg-white"
         >
           Download CV
           <img
             src="/assets/download-icon.png"
-            alt="Download CV"
-            className="w-4 dark:invert"
+            alt="Download"
+            className="w-4"
           />
         </a>
       </div>
