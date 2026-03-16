@@ -2,25 +2,25 @@ export default function Work() {
     const work = [
         {
             name: 'Frontend project',
-            icon: './assets/work-1.png',
+            icon: '/assets/work-1.png',
             description: 'Web Design',
             link: '',
         },
         {
             name: 'Geo based app',
-            icon: './assets/work-2.png',
-            description: 'mobile app',
+            icon: '/assets/work-2.png',
+            description: 'Mobile App',
             link: '',
         },
         {
             name: 'Photography site',
-            icon: './assets/work-3.png',
+            icon: '/assets/work-3.png',
             description: 'Web Design',
             link: '',
         },
         {
             name: 'UI/UX designing',
-            icon: './assets/work-4.png',
+            icon: '/assets/work-4.png',
             description: 'UI/UX Design',
             link: '',
         }
@@ -40,7 +40,7 @@ export default function Work() {
                                 <p className="text-sm text-gray-700">{work.description}</p>
                             </div>
                             <div className="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./assets/send-icon.png" alt="" className="w-5" />
+                                <img src="/assets/send-icon.png" alt="" className="w-5" />
                             </div>
                         </div>
                     </div>
@@ -48,8 +48,8 @@ export default function Work() {
             </div>
             <a href="#" className="w-max flex items-center justify-center gap-2 text-gray-700 border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full py-2 px-8 mx-auto my-20 duration-300 dark:text-white">
                 Show more
-                <img src="./assets/right-arrow-bold.png" alt="" className="w-4 dark:hidden" />
-                <img src="./assets/right-arrow-bold-dark.png" alt="" className="w-4 hidden dark:block" />
+                <img src="/assets/right-arrow-bold.png" alt="" className="w-4 dark:hidden" />
+                <img src="/assets/right-arrow-bold-dark.png" alt="" className="w-4 hidden dark:block" />
             </a>
 
         </div>

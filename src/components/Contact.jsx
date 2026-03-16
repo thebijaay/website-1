@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Contact() {
     const [result, setResult] = useState("");
@@ -35,7 +35,7 @@ export default function Contact() {
     return (
         <div
             id="contact"
-            className="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./assets/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none"
+            className="w-full px-[12%] py-10 scroll-mt-20 bg-[url('/assets/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none"
         >
             <h4 className="text-center mb-2 text-lg font-Ovo">
                 Connect with me
@@ -87,7 +87,7 @@ export default function Contact() {
                 >
                     Submit now
                     <img
-                        src="./assets/right-arrow-white.png"
+                        src="/assets/right-arrow-white.png"
                         alt=""
                         className="w-4"
                     />
