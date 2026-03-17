@@ -1,79 +1,138 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function Header() {
-  const headerRef = useRef(null);
+export default function Navbar() {
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark" ||
+      (!localStorage.getItem("theme") &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("active");
-        } else {
-          el.classList.remove("active");
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-
-    return () => {
-      observer.disconnect();
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        navRef.current.classList.add(
+          "bg-white",
+          "bg-opacity-50",
+          "backdrop-blur-lg",
+          "shadow-sm",
+          "dark:bg-darkTheme",
+          "dark:shadow-white/20"
+        );
+      } else {
+        navRef.current.classList.remove(
+          "bg-white",
+          "bg-opacity-50",
+          "backdrop-blur-lg",
+          "shadow-sm",
+          "dark:bg-darkTheme",
+          "dark:shadow-white/20"
+        );
+      }
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const navLinks = [
+    { name: "Home", href: "#top" },
+    { name: "About Me", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "My Work", href: "#work" },
+    { name: "Contact Me", href: "#contact" },
+  ];
+
   return (
-    <div
-      ref={headerRef}
-      className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
-    >
-      <img
-        src="/assets/dev-icon.png"
-        alt="Profile"
-        className="rounded-full w-32"
-      />
-
-      <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
-        Hi! I&apos;m Kiran Pokhrel
-        <img src="/assets/hand-icon.png" alt="Wave" className="w-6 mb-1" />
-      </h3>
-
-      <h1 className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">
-        IT & Web Development Enthusiast.
-      </h1>
-
-      <p className="max-w-2xl mx-auto font-Ovo">
-        I am currently a Bachelor&apos;s student pursuing a degree in Business Studies,
-        with a strong interest in the IT field.
-      </p>
-
-      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-        
-        <a
-          href="#contact"
-          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
-        >
-          Contact Me
-          <img src="/assets/right-arrow-white.png" alt="" className="w-4" />
-        </a>
-
-        <a
-          href="/assets/Kiran_Resume.pdf"
-          download
-          className="px-10 py-2.5 rounded-full border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover flex items-center gap-2 bg-white dark:bg-transparent dark:text-white"
-        >
-          My Resume
+    <>
+      <nav
+        ref={navRef}
+        className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300"
+      >
+        <a href="#top">
           <img
-            src="/assets/download-icon.png"
-            alt="Download"
-            className="w-4 dark:invert"
+            src="/assets/logo.png"
+            alt="Logo"
+            className="w-28 cursor-pointer mr-14 dark:hidden"
+          />
+          <img
+            src="/assets/logo_dark.png"
+            alt="Logo"
+            className="w-28 cursor-pointer mr-14 hidden dark:block"
           />
         </a>
 
-      </div>
-    </div>
+        <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a href={link.href} className="font-Ovo hover:text-gray-500 duration-300">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-4">
+          <button onClick={() => setIsDarkMode(!isDarkMode)}>
+            <img src="/assets/moon_icon.png" alt="" className="w-6 dark:hidden" />
+            <img src="/assets/sun_icon.png" alt="" className="w-6 hidden dark:block" />
+          </button>
+
+          <a
+            href="#contact"
+            className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50"
+          >
+            Contact
+            <img src="/assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
+            <img src="/assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
+          </a>
+
+          <button className="block md:hidden ml-3" onClick={toggleMenu}>
+            <img src="/assets/menu-black.png" alt="" className="w-6 dark:hidden" />
+            <img src="/assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
+          </button>
+        </div>
+
+        {/* -- mobile menu -- */}
+        <ul
+          className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white ${
+            isMenuOpen ? "transform -translate-x-64" : ""
+          }`}
+        >
+          <div className="absolute right-6 top-6" onClick={toggleMenu}>
+            <img
+              src="/assets/close-black.png"
+              alt=""
+              className="w-5 cursor-pointer dark:hidden"
+            />
+            <img
+              src="/assets/close-white.png"
+              alt=""
+              className="w-5 cursor-pointer hidden dark:block"
+            />
+          </div>
+
+          {navLinks.map((link) => (
+            <li key={link.name} onClick={toggleMenu}>
+              <a href={link.href} className="font-Ovo">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 }
