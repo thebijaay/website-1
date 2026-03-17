@@ -43,16 +43,17 @@ export default function Header() {
 
   return (
     <div
+      id="top"
       ref={headerRef}
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
       {/* Nepal Time Display */}
-      <div className="absolute top-5 right-5 text-sm font-Ovo">
+      <div className="absolute top-24 right-10 text-sm font-Ovo">
         🇳🇵 {time}
       </div>
 
       <img
-        src="/assets/dev-icon.png"
+        src="/assets/user-image.png"
         alt="Profile"
         className="rounded-full w-32"
       />
