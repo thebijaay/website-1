@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Navbar() {
     const sideMenuRef = useRef();
     const navRef = useRef();
     const navLinkRef = useRef();
+    const [time, setTime] = useState("");
 
     const openMenu = () => {
         sideMenuRef.current.style.transform = 'translateX(-16rem)';
@@ -12,7 +13,6 @@ export default function Navbar() {
         sideMenuRef.current.style.transform = 'translateX(16rem)';
     }
     const toggleTheme = () => {
-
         document.documentElement.classList.toggle('dark');
 
         if (document.documentElement.classList.contains('dark')) {
@@ -32,15 +32,31 @@ export default function Navbar() {
                 navRef.current.classList.remove('bg-white', 'bg-opacity-50', 'backdrop-blur-lg', 'shadow-sm', 'dark:bg-darkTheme', 'dark:shadow-white/20');
                 navLinkRef.current.classList.add('bg-white', 'shadow-sm', 'bg-opacity-50', 'dark:border', 'dark:border-white/30', "dark:bg-transparent");
             }
-        })
+        });
 
-        // -------- light mode and dark mode -----------
-
+        // Theme setup
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
         }
+
+        // Nepal Time
+        const updateTime = () => {
+            const nepalTime = new Date().toLocaleTimeString("en-US", {
+                timeZone: "Asia/Kathmandu",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            });
+            setTime(nepalTime);
+        };
+
+        updateTime();
+        const interval = setInterval(updateTime, 1000);
+
+        return () => clearInterval(interval);
+
     }, [])
 
     return (
@@ -51,10 +67,21 @@ export default function Navbar() {
 
             <nav ref={navRef} className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
 
-                <a href="#!">
-                    <img src="/assets/logo.png" alt="Logo" className="w-28 cursor-pointer mr-14 dark:hidden" />
-                    <img src="/assets/logo_dark.png" alt="Logo" className="w-28 cursor-pointer mr-14 hidden dark:block" />
-                </a>
+                {/* LEFT SIDE: TIME + LOGO */}
+                <div className="flex items-center gap-6">
+                    
+                    {/* Time */}
+                    <div className="text-base md:text-lg font-Ovo">
+                        {time}
+                    </div>
+
+                    {/* Logo */}
+                    <a href="#!">
+                        <img src="/assets/logo.png" alt="Logo" className="w-28 cursor-pointer dark:hidden" />
+                        <img src="/assets/logo_dark.png" alt="Logo" className="w-28 cursor-pointer hidden dark:block" />
+                    </a>
+
+                </div>
 
                 <ul ref={navLinkRef} className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo dark:border dark:border-white/30 dark:bg-transparent ">
                     <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#top">Home</a></li>
@@ -80,9 +107,9 @@ export default function Navbar() {
                         <img src="/assets/menu-black.png" alt="" className="w-6 dark:hidden" />
                         <img src="/assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
                     </button>
-
                 </div>
-                {/* -- ----- mobile menu ------  -- */}
+
+                {/* Mobile Menu stays same */}
                 <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white">
 
                     <div className="absolute right-6 top-6" onClick={closeMenu}>
