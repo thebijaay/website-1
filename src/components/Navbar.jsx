@@ -1,129 +1,76 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from "react";
 
-export default function Navbar() {
-    const sideMenuRef = useRef();
-    const navRef = useRef();
-    const navLinkRef = useRef();
-    const [time, setTime] = useState("");
+export default function Header() {
+  const headerRef = useRef(null);
 
-    const openMenu = () => {
-        sideMenuRef.current.style.transform = 'translateX(-16rem)';
-    }
-    const closeMenu = () => {
-        sideMenuRef.current.style.transform = 'translateX(16rem)';
-    }
-    const toggleTheme = () => {
-        document.documentElement.classList.toggle('dark');
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
 
-        if (document.documentElement.classList.contains('dark')) {
-            localStorage.theme = 'dark';
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("active");
         } else {
-            localStorage.theme = 'light';
+          el.classList.remove("active");
         }
-    }
+      },
+      { threshold: 0.3 }
+    );
 
-    useEffect(() => {
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-        window.addEventListener('scroll', () => {
-            if (scrollY > 50) {
-                navRef.current.classList.add('bg-white', 'bg-opacity-50', 'backdrop-blur-lg', 'shadow-sm', 'dark:bg-darkTheme', 'dark:shadow-white/20');
-                navLinkRef.current.classList.remove('bg-white', 'shadow-sm', 'bg-opacity-50', 'dark:border', 'dark:border-white/30', "dark:bg-transparent");
-            } else {
-                navRef.current.classList.remove('bg-white', 'bg-opacity-50', 'backdrop-blur-lg', 'shadow-sm', 'dark:bg-darkTheme', 'dark:shadow-white/20');
-                navLinkRef.current.classList.add('bg-white', 'shadow-sm', 'bg-opacity-50', 'dark:border', 'dark:border-white/30', "dark:bg-transparent");
-            }
-        });
+  return (
+    <div
+      ref={headerRef}
+      className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
+    >
+      <img
+        src="/assets/dev-icon.png"
+        alt="Profile"
+        className="rounded-full w-32"
+      />
 
-        // Theme setup
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
+      <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
+        Hi! I&apos;m Kiran Pokhrel
+        <img src="/assets/hand-icon.png" alt="Wave" className="w-6 mb-1" />
+      </h3>
 
-        // Nepal Time
-        const updateTime = () => {
-            const nepalTime = new Date().toLocaleTimeString("en-US", {
-                timeZone: "Asia/Kathmandu",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-            });
-            setTime(nepalTime);
-        };
+      <h1 className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">
+        IT & Web Development Enthusiast.
+      </h1>
 
-        updateTime();
-        const interval = setInterval(updateTime, 1000);
+      <p className="max-w-2xl mx-auto font-Ovo">
+        I am currently a Bachelor&apos;s student pursuing a degree in Business Studies,
+        with a strong interest in the IT field.
+      </p>
 
-        return () => clearInterval(interval);
+      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+        
+        <a
+          href="#contact"
+          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
+        >
+          Contact Me
+          <img src="/assets/right-arrow-white.png" alt="" className="w-4" />
+        </a>
 
-    }, [])
+        <a
+          href="/assets/Kiran_Resume.pdf"
+          download
+          className="px-10 py-2.5 rounded-full border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover flex items-center gap-2 bg-white dark:bg-transparent dark:text-white"
+        >
+          My Resume
+          <img
+            src="/assets/download-icon.png"
+            alt="Download"
+            className="w-4 dark:invert"
+          />
+        </a>
 
-    return (
-        <>
-            <div className="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
-                <img src="/assets/header-bg-color.png" alt="" className="w-full" />
-            </div>
-
-            <nav ref={navRef} className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
-
-                {/* LEFT SIDE: TIME + LOGO */}
-                <div className="flex items-center gap-6">
-                    
-                    {/* Time */}
-                    <div className="text-base md:text-lg font-Ovo">
-                        {time}
-                    </div>
-
-                    {/* Logo */}
-                    <a href="#!">
-                        <img src="/assets/logo.png" alt="Logo" className="w-28 cursor-pointer dark:hidden" />
-                        <img src="/assets/logo_dark.png" alt="Logo" className="w-28 cursor-pointer hidden dark:block" />
-                    </a>
-
-                </div>
-
-                <ul ref={navLinkRef} className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo dark:border dark:border-white/30 dark:bg-transparent ">
-                    <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#top">Home</a></li>
-                    <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#about">About me</a></li>
-                    <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#services">Services</a></li>
-                    <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#work">Certificates</a></li>
-                    <li><a className='hover:text-gray-500 dark:hover:text-gray-300 transition' href="#contact">Contact me</a></li>
-                </ul>
-
-                <div className="flex items-center gap-4">
-                    <button onClick={toggleTheme}>
-                        <img src="/assets/moon_icon.png" alt="" className="w-5 dark:hidden" />
-                        <img src="/assets/sun_icon.png" alt="" className="w-5 hidden dark:block" />
-                    </button>
-
-                    <a href="#contact" className="hidden lg:flex items-center gap-3 px-8 py-1.5 border border-gray-300 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full ml-4 font-Ovo dark:border-white/30">
-                        Contact
-                        <img src="/assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
-                        <img src="/assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
-                    </a>
-
-                    <button className="block md:hidden ml-3" onClick={openMenu}>
-                        <img src="/assets/menu-black.png" alt="" className="w-6 dark:hidden" />
-                        <img src="/assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
-                    </button>
-                </div>
-
-                {/* Mobile Menu stays same */}
-                <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white">
-
-                    <div className="absolute right-6 top-6" onClick={closeMenu}>
-                        <img src="/assets/close-black.png" alt="" className="w-5 cursor-pointer dark:hidden" />
-                        <img src="/assets/close-white.png" alt="" className="w-5 cursor-pointer hidden dark:block" />
-                    </div>
-
-                    <li><a href="#top" onClick={closeMenu}>Home</a></li>
-                    <li><a href="#about" onClick={closeMenu}>About me</a></li>
-                    <li><a href="#services" onClick={closeMenu}>Services</a></li>
-                    <li><a href="#work" onClick={closeMenu}>Certificates</a></li>
-                    <li><a href="#contact" onClick={closeMenu}>Contact me</a></li>
-                </ul>
-            </nav>
-        </>
-    )
+      </div>
+    </div>
+  );
 }
