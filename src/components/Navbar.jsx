@@ -13,17 +13,20 @@ export default function Navbar() {
     { name: "Contact Me", href: "#contact" },
   ];
 
-  // Initialize theme
+  // Initialize theme correctly
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    setIsDarkMode(
-      savedTheme
-        ? savedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches
-    );
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    }
   }, []);
 
-  // Apply theme
+  // Update theme whenever state changes
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -34,7 +37,7 @@ export default function Navbar() {
     }
   }, [isDarkMode]);
 
-  // Update Nepal time
+  // Nepal time
   useEffect(() => {
     const updateTime = () => {
       const nepalTime = new Date().toLocaleTimeString("en-US", {
@@ -50,14 +53,12 @@ export default function Navbar() {
     return () => clearInterval(interval);
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
     <nav
       className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300
         ${isDarkMode ? "bg-darkBg/95" : "bg-lightBg/95"} backdrop-blur-lg shadow-sm`}
     >
-      {/* Left Section: Logo */}
+      {/* Left Section */}
       <div className="flex items-center gap-4">
         <a href="#top">
           <img
@@ -68,12 +69,12 @@ export default function Navbar() {
         </a>
       </div>
 
-      {/* Center Section: Nepal Time */}
+      {/* Center Section */}
       <div className="hidden md:flex text-lg md:text-xl font-semibold font-Ovo text-lightText dark:text-darkText">
         🇳🇵 {time}
       </div>
 
-      {/* Right Section: Desktop Menu + Dark Mode + Contact + Mobile */}
+      {/* Right Section */}
       <div className="flex items-center gap-4">
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg/95 dark:bg-darkBg/95 shadow-sm border border-lightBorder dark:border-darkBorder">
@@ -91,9 +92,7 @@ export default function Navbar() {
 
         {/* Dark Mode Toggle */}
         <button
-          onClick={() => {
-            if (!isDarkMode) setIsDarkMode(true);
-          }}
+          onClick={() => setIsDarkMode(!isDarkMode)}
           className="p-1 rounded-full hover:bg-lightBorder dark:hover:bg-darkBorder transition"
         >
           <img
@@ -117,7 +116,7 @@ export default function Navbar() {
         </a>
 
         {/* Mobile Menu Button */}
-        <button className="block md:hidden ml-3" onClick={toggleMenu}>
+        <button className="block md:hidden ml-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <img
             src={isDarkMode ? "/assets/menu-white.png" : "/assets/menu-black.png"}
             alt="Menu"
@@ -132,7 +131,7 @@ export default function Navbar() {
           ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
           ${isDarkMode ? "bg-darkBg/95 text-darkText" : "bg-lightBg/95 text-lightText"} backdrop-blur-lg`}
       >
-        <div className="absolute right-6 top-6" onClick={toggleMenu}>
+        <div className="absolute right-6 top-6" onClick={() => setIsMenuOpen(false)}>
           <img
             src={isDarkMode ? "/assets/close-white.png" : "/assets/close-black.png"}
             alt="Close"
@@ -141,7 +140,7 @@ export default function Navbar() {
         </div>
 
         {navLinks.map((link) => (
-          <li key={link.name} onClick={toggleMenu}>
+          <li key={link.name} onClick={() => setIsMenuOpen(false)}>
             <a
               href={link.href}
               className="font-Ovo text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent"
