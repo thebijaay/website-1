@@ -48,13 +48,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Nepal Time
+  // Nepal Time with seconds
   useEffect(() => {
     const updateTime = () => {
       const nepalTime = new Date().toLocaleTimeString("en-US", {
         timeZone: "Asia/Kathmandu",
         hour: "2-digit",
         minute: "2-digit",
+        second: "2-digit",
       });
       setTime(nepalTime);
     };
@@ -96,7 +97,7 @@ export default function Navbar() {
           </a>
 
           {/* Time */}
-          <div className="text-lg md:text-xl font-semibold font-Ovo text-gray-700 dark:text-white">
+          <div className="text-sm md:text-base font-medium font-Ovo text-gray-700 dark:text-white">
             🇳🇵 {time}
           </div>
         </div>
