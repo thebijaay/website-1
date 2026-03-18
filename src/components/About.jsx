@@ -139,7 +139,7 @@ export default function About() {
                             <li
                                 key={item.name}
                                 className="border border-gray-300 dark:border-white/30 rounded-xl p-6
-                                           hover:-translate-y-1 duration-500"
+                                           hover:-translate-y-1 duration-500 bg-lightBg dark:bg-darkTheme"
                             >
                                 <img src={item.icon1} alt="" className="w-7 mt-3 dark:hidden" />
                                 <img src={item.icon2} alt="" className="w-7 mt-3 hidden dark:block" />
@@ -156,7 +156,7 @@ export default function About() {
                             <li
                                 key={tool.name}
                                 className="w-12 sm:w-14 aspect-square flex items-center justify-center
-                                           border rounded-lg hover:-translate-y-1 duration-500"
+                                           border rounded-lg hover:-translate-y-1 duration-500 bg-lightBg dark:bg-darkTheme"
                             >
                                 <img src={tool.icon} alt={tool.name} className="w-5 sm:w-7" />
                             </li>
