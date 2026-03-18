@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-3">
                 <p>© {new Date().getFullYear()} <a href="https://kiran-pokhrel.com.np" target="_blank" rel="noopener noreferrer">Kiran Pokhrel</a> • Distributed by <a href="https://kiran-pokhrel.com.np" target="_blank" rel="noopener noreferrer">Kiran Pokhrel</a> • All rights reserved.</p>
                 <ul className="flex items-center gap-10 justify-center mt-4 sm:mt-0">
-                    <li><a href="https://github.com/pokhrelkiran321" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><a href="https://github.com/pokhrelkiran321-commits" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     <li><a href="https://linkedin.com/in/kiranpokhrel" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                     <li><a href="https://twitter.com/kiranpokhrel" target="_blank" rel="noopener noreferrer">Twitter</a></li>
                 </ul>
