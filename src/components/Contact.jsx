@@ -59,7 +59,7 @@ export default function Contact() {
                     <input
                         type="text"
                         placeholder="Enter your name"
-                        className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white dark:bg-darkHover/30"
+                        className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-lightBg dark:bg-darkHover/30"
                         required
                         name="name"
                     />
@@ -67,7 +67,7 @@ export default function Contact() {
                     <input
                         type="email"
                         placeholder="Enter your email"
-                        className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white dark:bg-darkHover/30"
+                        className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-lightBg dark:bg-darkHover/30"
                         required
                         name="email"
                     />
@@ -76,7 +76,7 @@ export default function Contact() {
                 <textarea
                     rows="6"
                     placeholder="Enter your message"
-                    className="w-full px-4 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white mb-6 dark:bg-darkHover/30"
+                    className="w-full px-4 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-lightBg mb-6 dark:bg-darkHover/30"
                     required
                     name="message"
                 ></textarea>

@@ -20,6 +20,8 @@ export default {
         lightHover: '#fcf4ff',
         darkHover: '#2a004a',
         darkTheme: '#11001F',
+        lightBg: '#fcf4ff',
+        darkBg: '#11001F',
       },
       backgroundImage: {
         // Add a custom light-mode gradient
