@@ -1,15 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
-  const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem("theme") === "dark" ||
-      (!localStorage.getItem("theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-  );
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [time, setTime] = useState("");
   const navRef = useRef(null);
 
+  const navLinks = [
+    { name: "Home", href: "#top" },
+    { name: "About Me", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "My Work", href: "#work" },
+    { name: "Contact Me", href: "#contact" },
+  ];
+
+  // Initialize theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    setIsDarkMode(
+      savedTheme
+        ? savedTheme === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
+  }, []);
+
+  // Apply theme whenever it changes
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -20,6 +35,7 @@ export default function Navbar() {
     }
   }, [isDarkMode]);
 
+  // Scroll effect for navbar background
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -46,6 +62,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Update Nepal time every second
   useEffect(() => {
     const updateTime = () => {
       const nepalTime = new Date().toLocaleTimeString("en-US", {
@@ -63,14 +80,6 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const navLinks = [
-    { name: "Home", href: "#top" },
-    { name: "About Me", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "My Work", href: "#work" },
-    { name: "Contact Me", href: "#contact" },
-  ];
-
   return (
     <nav
       ref={navRef}
@@ -80,14 +89,9 @@ export default function Navbar() {
       <div className="flex items-center gap-4">
         <a href="#top">
           <img
-            src="/assets/logo.png"
+            src={isDarkMode ? "/assets/logo_dark.png" : "/assets/logo.png"}
             alt="Logo"
-            className="w-28 cursor-pointer dark:hidden"
-          />
-          <img
-            src="/assets/logo_dark.png"
-            alt="Logo"
-            className="w-28 cursor-pointer hidden dark:block"
+            className="w-28 cursor-pointer"
           />
         </a>
       </div>
@@ -118,8 +122,11 @@ export default function Navbar() {
           onClick={() => setIsDarkMode(!isDarkMode)}
           className="p-1 rounded-full hover:bg-lightBorder dark:hover:bg-darkBorder transition"
         >
-          <img src="/assets/moon_icon.png" alt="" className="w-6 dark:hidden" />
-          <img src="/assets/sun_icon.png" alt="" className="w-6 hidden dark:block" />
+          <img
+            src={isDarkMode ? "/assets/sun_icon.png" : "/assets/moon_icon.png"}
+            alt="Theme Toggle"
+            className="w-6"
+          />
         </button>
 
         {/* Contact Button */}
@@ -128,26 +135,35 @@ export default function Navbar() {
           className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-lightBorder rounded-full ml-4 font-Ovo text-lightText dark:text-darkText dark:border-darkBorder hover:bg-lightAccent hover:text-white dark:hover:bg-darkAccent dark:hover:text-white transition"
         >
           Contact
-          <img src="/assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
-          <img src="/assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
+          <img
+            src={isDarkMode ? "/assets/arrow-icon-dark.png" : "/assets/arrow-icon.png"}
+            alt=""
+            className="w-3"
+          />
         </a>
 
         {/* Mobile Menu Button */}
         <button className="block md:hidden ml-3" onClick={toggleMenu}>
-          <img src="/assets/menu-black.png" alt="" className="w-6 dark:hidden" />
-          <img src="/assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
+          <img
+            src={isDarkMode ? "/assets/menu-white.png" : "/assets/menu-black.png"}
+            alt="Menu"
+            className="w-6"
+          />
         </button>
       </div>
 
       {/* Mobile Menu */}
       <ul
-        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-lightBg dark:bg-darkBg dark:text-darkText transition-transform duration-500 ${
-          isMenuOpen ? "transform -translate-x-64" : ""
+        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 right-0 w-64 z-50 h-screen bg-lightBg dark:bg-darkBg dark:text-darkText transition-transform duration-500 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="absolute right-6 top-6" onClick={toggleMenu}>
-          <img src="/assets/close-black.png" alt="" className="w-5 cursor-pointer dark:hidden" />
-          <img src="/assets/close-white.png" alt="" className="w-5 cursor-pointer hidden dark:block" />
+          <img
+            src={isDarkMode ? "/assets/close-white.png" : "/assets/close-black.png"}
+            alt="Close"
+            className="w-5 cursor-pointer"
+          />
         </div>
 
         {navLinks.map((link) => (
