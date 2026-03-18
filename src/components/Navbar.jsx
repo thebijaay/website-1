@@ -13,7 +13,7 @@ export default function Navbar() {
     { name: "Contact Me", href: "#contact" },
   ];
 
-  // Initialize theme on mount
+  // Initialize theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     setIsDarkMode(
@@ -23,7 +23,7 @@ export default function Navbar() {
     );
   }, []);
 
-  // Apply theme whenever it changes
+  // Apply theme
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -34,7 +34,7 @@ export default function Navbar() {
     }
   }, [isDarkMode]);
 
-  // Update Nepal time every second
+  // Update Nepal time
   useEffect(() => {
     const updateTime = () => {
       const nepalTime = new Date().toLocaleTimeString("en-US", {
@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <nav
       className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300
-        ${isDarkMode ? "bg-darkBg" : "bg-lightBg"} shadow-sm`}
+        ${isDarkMode ? "bg-darkBg/95" : "bg-lightBg/95"} backdrop-blur-lg shadow-sm`}
     >
       {/* Left Section: Logo */}
       <div className="flex items-center gap-4">
@@ -76,7 +76,7 @@ export default function Navbar() {
       {/* Right Section: Desktop Menu + Dark Mode + Contact + Mobile */}
       <div className="flex items-center gap-4">
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg dark:bg-darkBg shadow-sm border border-lightBorder dark:border-darkBorder">
+        <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg/95 dark:bg-darkBg/95 shadow-sm border border-lightBorder dark:border-darkBorder">
           {navLinks.map((link) => (
             <li key={link.name}>
               <a
@@ -92,7 +92,6 @@ export default function Navbar() {
         {/* Dark Mode Toggle */}
         <button
           onClick={() => {
-            // Only toggle dark if currently light
             if (!isDarkMode) setIsDarkMode(true);
           }}
           className="p-1 rounded-full hover:bg-lightBorder dark:hover:bg-darkBorder transition"
@@ -131,7 +130,7 @@ export default function Navbar() {
       <ul
         className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 right-0 w-64 z-50 h-screen transition-transform duration-500
           ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
-          ${isDarkMode ? "bg-darkBg text-darkText" : "bg-lightBg text-lightText"}`}
+          ${isDarkMode ? "bg-darkBg/95 text-darkText" : "bg-lightBg/95 text-lightText"} backdrop-blur-lg`}
       >
         <div className="absolute right-6 top-6" onClick={toggleMenu}>
           <img
