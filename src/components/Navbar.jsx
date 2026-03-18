@@ -7,8 +7,10 @@ export default function Navbar() {
         window.matchMedia("(prefers-color-scheme: dark)").matches)
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [time, setTime] = useState("");
   const navRef = useRef(null);
 
+  // Dark mode
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -19,6 +21,7 @@ export default function Navbar() {
     }
   }, [isDarkMode]);
 
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -45,6 +48,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Nepal Time
+  useEffect(() => {
+    const updateTime = () => {
+      const nepalTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Asia/Kathmandu",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      setTime(nepalTime);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navLinks = [
@@ -61,19 +80,28 @@ export default function Navbar() {
         ref={navRef}
         className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300"
       >
-        <a href="#top">
-          <img
-            src="/assets/logo.png"
-            alt="Logo"
-            className="w-28 cursor-pointer mr-14 dark:hidden"
-          />
-          <img
-            src="/assets/logo_dark.png"
-            alt="Logo"
-            className="w-28 cursor-pointer mr-14 hidden dark:block"
-          />
-        </a>
+        {/* Left Section */}
+        <div className="flex items-center gap-4">
+          <a href="#top" className="flex items-center">
+            <img
+              src="/assets/logo.png"
+              alt="Logo"
+              className="w-28 cursor-pointer mr-2 dark:hidden"
+            />
+            <img
+              src="/assets/logo_dark.png"
+              alt="Logo"
+              className="w-28 cursor-pointer mr-2 hidden dark:block"
+            />
+          </a>
 
+          {/* Time */}
+          <div className="text-lg md:text-xl font-semibold font-Ovo text-gray-700 dark:text-white">
+            🇳🇵 {time}
+          </div>
+        </div>
+
+        {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent">
           {navLinks.map((link) => (
             <li key={link.name}>
@@ -84,6 +112,7 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* Right Section */}
         <div className="flex items-center gap-4">
           <button onClick={() => setIsDarkMode(!isDarkMode)}>
             <img src="/assets/moon_icon.png" alt="" className="w-6 dark:hidden" />
@@ -105,7 +134,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* -- mobile menu -- */}
+        {/* Mobile Menu */}
         <ul
           className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white ${
             isMenuOpen ? "transform -translate-x-64" : ""
