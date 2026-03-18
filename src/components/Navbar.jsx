@@ -26,20 +26,20 @@ export default function Navbar() {
     const handleScroll = () => {
       if (window.scrollY > 50) {
         navRef.current.classList.add(
-          "bg-white",
-          "bg-opacity-50",
+          "bg-lightBg",
+          "bg-opacity-95",
           "backdrop-blur-lg",
           "shadow-sm",
-          "dark:bg-darkTheme",
+          "dark:bg-darkBg",
           "dark:shadow-white/20"
         );
       } else {
         navRef.current.classList.remove(
-          "bg-white",
-          "bg-opacity-50",
+          "bg-lightBg",
+          "bg-opacity-95",
           "backdrop-blur-lg",
           "shadow-sm",
-          "dark:bg-darkTheme",
+          "dark:bg-darkBg",
           "dark:shadow-white/20"
         );
       }
@@ -59,7 +59,6 @@ export default function Navbar() {
       });
       setTime(nepalTime);
     };
-
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
@@ -96,18 +95,18 @@ export default function Navbar() {
         </a>
 
         {/* Nepal Time Display */}
-        <div className="text-lg md:text-xl font-semibold font-Ovo text-gray-700 dark:text-white">
+        <div className="text-lg md:text-xl font-semibold font-Ovo text-lightText dark:text-darkText">
           🇳🇵 {time}
         </div>
       </div>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent">
+      <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg shadow-sm border border-lightBorder dark:border-darkBorder dark:bg-darkBg">
         {navLinks.map((link) => (
           <li key={link.name}>
             <a
               href={link.href}
-              className="font-Ovo hover:text-gray-500 duration-300"
+              className="font-Ovo text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent duration-300"
             >
               {link.name}
             </a>
@@ -117,20 +116,25 @@ export default function Navbar() {
 
       {/* Right Section */}
       <div className="flex items-center gap-4">
-        <button onClick={() => setIsDarkMode(!isDarkMode)}>
+        {/* Dark Mode Toggle */}
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className="p-1 rounded-full hover:bg-lightBorder dark:hover:bg-darkBorder transition"
+        >
           <img src="/assets/moon_icon.png" alt="" className="w-6 dark:hidden" />
           <img src="/assets/sun_icon.png" alt="" className="w-6 hidden dark:block" />
         </button>
 
         <a
           href="#contact"
-          className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50"
+          className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-lightBorder rounded-full ml-4 font-Ovo text-lightText dark:text-darkText dark:border-darkBorder hover:bg-lightAccent hover:text-white dark:hover:bg-darkAccent dark:hover:text-white transition"
         >
           Contact
           <img src="/assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
           <img src="/assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
         </a>
 
+        {/* Mobile Menu Button */}
         <button className="block md:hidden ml-3" onClick={toggleMenu}>
           <img src="/assets/menu-black.png" alt="" className="w-6 dark:hidden" />
           <img src="/assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
@@ -139,26 +143,21 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <ul
-        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white ${
+        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-lightBg dark:bg-darkBg dark:text-darkText transition-transform duration-500 ${
           isMenuOpen ? "transform -translate-x-64" : ""
         }`}
       >
         <div className="absolute right-6 top-6" onClick={toggleMenu}>
-          <img
-            src="/assets/close-black.png"
-            alt=""
-            className="w-5 cursor-pointer dark:hidden"
-          />
-          <img
-            src="/assets/close-white.png"
-            alt=""
-            className="w-5 cursor-pointer hidden dark:block"
-          />
+          <img src="/assets/close-black.png" alt="" className="w-5 cursor-pointer dark:hidden" />
+          <img src="/assets/close-white.png" alt="" className="w-5 cursor-pointer hidden dark:block" />
         </div>
 
         {navLinks.map((link) => (
           <li key={link.name} onClick={toggleMenu}>
-            <a href={link.href} className="font-Ovo">
+            <a
+              href={link.href}
+              className="font-Ovo text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent"
+            >
               {link.name}
             </a>
           </li>
