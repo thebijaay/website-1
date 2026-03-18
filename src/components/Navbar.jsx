@@ -10,7 +10,6 @@ export default function Navbar() {
   const [time, setTime] = useState("");
   const navRef = useRef(null);
 
-  // Dark mode
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -21,7 +20,6 @@ export default function Navbar() {
     }
   }, [isDarkMode]);
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -48,7 +46,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Nepal Time
   useEffect(() => {
     const updateTime = () => {
       const nepalTime = new Date().toLocaleTimeString("en-US", {
@@ -79,43 +76,43 @@ export default function Navbar() {
       ref={navRef}
       className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300"
     >
-      {/* Left Section: Logo + Time */}
+      {/* Left Section: Logo */}
       <div className="flex items-center gap-4">
-        <a href="#top" className="flex items-center">
+        <a href="#top">
           <img
             src="/assets/logo.png"
             alt="Logo"
-            className="w-28 cursor-pointer mr-2 dark:hidden"
+            className="w-28 cursor-pointer dark:hidden"
           />
           <img
             src="/assets/logo_dark.png"
             alt="Logo"
-            className="w-28 cursor-pointer mr-2 hidden dark:block"
+            className="w-28 cursor-pointer hidden dark:block"
           />
         </a>
-
-        {/* Nepal Time Display */}
-        <div className="text-lg md:text-xl font-semibold font-Ovo text-lightText dark:text-darkText">
-          🇳🇵 {time}
-        </div>
       </div>
 
-      {/* Desktop Menu */}
-      <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg shadow-sm border border-lightBorder dark:border-darkBorder dark:bg-darkBg">
-        {navLinks.map((link) => (
-          <li key={link.name}>
-            <a
-              href={link.href}
-              className="font-Ovo text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent duration-300"
-            >
-              {link.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {/* Center Section: Nepal Time */}
+      <div className="hidden md:flex text-lg md:text-xl font-semibold font-Ovo text-lightText dark:text-darkText">
+        🇳🇵 {time}
+      </div>
 
-      {/* Right Section */}
+      {/* Right Section: Desktop Menu + Dark Mode + Contact + Mobile */}
       <div className="flex items-center gap-4">
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-lightBg shadow-sm border border-lightBorder dark:border-darkBorder dark:bg-darkBg">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                className="font-Ovo text-lightText dark:text-darkText hover:text-lightAccent dark:hover:text-darkAccent duration-300"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
         {/* Dark Mode Toggle */}
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
@@ -125,6 +122,7 @@ export default function Navbar() {
           <img src="/assets/sun_icon.png" alt="" className="w-6 hidden dark:block" />
         </button>
 
+        {/* Contact Button */}
         <a
           href="#contact"
           className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-lightBorder rounded-full ml-4 font-Ovo text-lightText dark:text-darkText dark:border-darkBorder hover:bg-lightAccent hover:text-white dark:hover:bg-darkAccent dark:hover:text-white transition"
