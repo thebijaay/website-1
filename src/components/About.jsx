@@ -107,7 +107,7 @@ export default function About() {
             <h2 className="text-center text-5xl font-Ovo">About me</h2>
 
             {/* Sticky boundary */}
-            <div className="flex w-full flex-col lg:flex-row gap-20 my-20 min-h-[220vh]">
+            <div className="flex w-full flex-col lg:flex-row gap-20 my-20">
                 
                 {/* LEFT: Sticky Image */}
                 <div className="flex-shrink-0 lg:sticky lg:top-24 self-start">

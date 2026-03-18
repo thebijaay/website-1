@@ -1,28 +1,28 @@
 export default function Services() {
     const services = [
         {
-            name: 'Web design',
+            name: 'Web Design',
             icon: '/assets/web-icon.png',
-            description: 'Crafting responsive, user-friendly websites with a focus on modern design and functionality.',
-            link: '#',
+            description: 'Designing intuitive, high-performance web applications tailored to your business needs.',
+            link: '#work',
         },
         {
             name: 'Mobile App',
             icon: '/assets/mobile-icon.png',
-            description: 'Designing intuitive and engaging mobile application interfaces for various platforms.',
-            link: '#',
+            description: 'Developing seamless cross-platform mobile experiences with a focus on usability.',
+            link: '#work',
         },
         {
             name: 'UI/UX Design',
             icon: '/assets/ui-icon.png',
-            description: 'Creating seamless user experiences through thoughtful interface design and user research.',
-            link: '#',
+            description: 'Creating visually stunning and user-centric designs that drive engagement.',
+            link: '#work',
         },
         {
             name: 'Graphics Design',
             icon: '/assets/graphics-icon.png',
-            description: 'Visual storytelling through branding, layout design, and creative digital assets.',
-            link: '#',
+            description: 'Professional visual identities and digital branding assets for a strong online presence.',
+            link: '#work',
         }
     ];
     return (
