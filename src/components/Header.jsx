@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Header() {
   const headerRef = useRef(null);
-  const [time, setTime] = useState("");
 
   useEffect(() => {
     const el = headerRef.current;
@@ -23,35 +22,12 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Nepal Time Logic
-  useEffect(() => {
-    const updateTime = () => {
-      const nepalTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "Asia/Kathmandu",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-      setTime(nepalTime);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div
       id="top"
       ref={headerRef}
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
-      {/* Nepal Time Display */}
-      <div className="absolute top-24 right-5 sm:right-10 text-xs sm:text-sm font-Ovo whitespace-nowrap">
-        🇳🇵 {time}
-      </div>
-
       <img
         src="/assets/user-image.png"
         alt="Profile"
@@ -73,7 +49,6 @@ export default function Header() {
       </p>
 
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-        
         <a
           href="#contact"
           className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center gap-2 dark:border-transparent dark:bg-none dark:border-white/30 dark:hover:bg-purple-800 transition duration-500"
@@ -94,7 +69,6 @@ export default function Header() {
             className="w-4 dark:invert"
           />
         </a>
-
       </div>
     </div>
   );
