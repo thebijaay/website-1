@@ -1,25 +1,25 @@
 export default function Work() {
     const work = [
         {
-            name: 'Frontend project',
+            name: 'Frontend Project',
             icon: '/assets/work-1.png',
             description: 'Web Design',
             link: '',
         },
         {
-            name: 'Geo based app',
+            name: 'Geo Based App',
             icon: '/assets/work-2.png',
             description: 'Mobile App',
             link: '',
         },
         {
-            name: 'Photography site',
+            name: 'Photography Site',
             icon: '/assets/work-3.png',
             description: 'Web Design',
             link: '',
         },
         {
-            name: 'UI/UX designing',
+            name: 'UI/UX Designing',
             icon: '/assets/work-4.png',
             description: 'UI/UX Design',
             link: '',

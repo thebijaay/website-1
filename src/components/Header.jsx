@@ -48,7 +48,7 @@ export default function Header() {
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
       {/* Nepal Time Display */}
-      <div className="absolute top-24 right-10 text-sm font-Ovo">
+      <div className="absolute top-24 right-5 sm:right-10 text-xs sm:text-sm font-Ovo whitespace-nowrap">
         🇳🇵 {time}
       </div>
 
@@ -76,7 +76,7 @@ export default function Header() {
         
         <a
           href="#contact"
-          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#3b82f6] to-[#9333ea] text-white flex items-center gap-2 dark:border-transparent"
+          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center gap-2 dark:border-transparent dark:bg-none dark:border-white/30 dark:hover:bg-purple-800 transition duration-500"
         >
           Contact Me
           <img src="/assets/right-arrow-white.png" alt="" className="w-4" />
