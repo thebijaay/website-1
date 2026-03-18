@@ -3,25 +3,25 @@ export default function Services() {
         {
             name: 'Web design',
             icon: '/assets/web-icon.png',
-            description: 'Crafting responsive, user-friendly websites with a focus on modern design and functionality.',
+            description: 'Web development is the process of building, programming...',
             link: '#',
         },
         {
             name: 'Mobile App',
             icon: '/assets/mobile-icon.png',
-            description: 'Designing intuitive and engaging mobile application interfaces for various platforms.',
+            description: 'Web development is the process of building, programming...',
             link: '#',
         },
         {
             name: 'UI/UX Design',
             icon: '/assets/ui-icon.png',
-            description: 'Creating seamless user experiences through thoughtful interface design and user research.',
+            description: 'Web development is the process of building, programming...',
             link: '#',
         },
         {
             name: 'Graphics Design',
             icon: '/assets/graphics-icon.png',
-            description: 'Visual storytelling through branding, layout design, and creative digital assets.',
+            description: 'Web development is the process of building, programming...',
             link: '#',
         }
     ];

@@ -4,25 +4,25 @@ export default function Work() {
             name: 'Frontend project',
             icon: '/assets/work-1.png',
             description: 'Web Design',
-            link: '#',
+            link: '',
         },
         {
             name: 'Geo based app',
             icon: '/assets/work-2.png',
             description: 'Mobile App',
-            link: '#',
+            link: '',
         },
         {
             name: 'Photography site',
             icon: '/assets/work-3.png',
             description: 'Web Design',
-            link: '#',
+            link: '',
         },
         {
             name: 'UI/UX designing',
             icon: '/assets/work-4.png',
             description: 'UI/UX Design',
-            link: '#',
+            link: '',
         }
     ];
     return (
@@ -46,7 +46,7 @@ export default function Work() {
                     </div>
                 ))}
             </div>
-            <a href="#work" className="w-max flex items-center justify-center gap-2 text-gray-700 border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full py-2 px-8 mx-auto my-20 duration-300 dark:text-white">
+            <a href="#" className="w-max flex items-center justify-center gap-2 text-gray-700 border border-gray-300 dark:border-white/25 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full py-2 px-8 mx-auto my-20 duration-300 dark:text-white">
                 Show more
                 <img src="/assets/right-arrow-bold.png" alt="" className="w-4 dark:hidden" />
                 <img src="/assets/right-arrow-bold-dark.png" alt="" className="w-4 hidden dark:block" />
