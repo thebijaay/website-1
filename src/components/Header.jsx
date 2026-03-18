@@ -29,7 +29,7 @@ export default function Header() {
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
       <img
-        src="/assets/dev-icon.png"
+        src="/assets/user-image.png"
         alt="Profile"
         className="rounded-full w-32"
       />
@@ -52,7 +52,7 @@ export default function Header() {
         
         <a
           href="#contact"
-          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
+          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#3b82f6] to-[#9333ea] text-white flex items-center gap-2 dark:border-transparent"
         >
           Contact Me
           <img src="/assets/right-arrow-white.png" alt="" className="w-4" />
