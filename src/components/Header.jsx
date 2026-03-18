@@ -76,7 +76,7 @@ export default function Header() {
         
         <a
           href="#contact"
-          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
+          className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#3b82f6] to-[#9333ea] text-white flex items-center gap-2 dark:border-transparent"
         >
           Contact Me
           <img src="/assets/right-arrow-white.png" alt="" className="w-4" />

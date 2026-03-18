@@ -83,7 +83,7 @@ export default function Contact() {
 
                 <button
                     type="submit"
-                    className="py-2 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border dark:border-white/30 dark:hover:bg-darkHover"
+                    className="py-2 px-8 w-max flex items-center justify-between gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full mx-auto hover:scale-105 duration-500 dark:bg-none dark:border dark:border-white/30 dark:hover:bg-purple-800"
                 >
                     Submit now
                     <img

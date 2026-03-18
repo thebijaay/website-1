@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const sideMenuRef = useRef(null);
-  const navRef = useRef(null);
-  const navLinkRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const openMenu = () => {
     setIsMenuOpen(true);
@@ -27,39 +25,9 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        navRef.current?.classList.add(
-          "bg-white",
-          "bg-opacity-50",
-          "backdrop-blur-lg",
-          "shadow-sm",
-          "dark:bg-darkTheme",
-          "dark:shadow-white/20"
-        );
-        navLinkRef.current?.classList.remove(
-          "bg-white",
-          "shadow-sm",
-          "bg-opacity-50",
-          "dark:border",
-          "dark:border-white/30",
-          "dark:bg-transparent"
-        );
+        setIsScrolled(true);
       } else {
-        navRef.current?.classList.remove(
-          "bg-white",
-          "bg-opacity-50",
-          "backdrop-blur-lg",
-          "shadow-sm",
-          "dark:bg-darkTheme",
-          "dark:shadow-white/20"
-        );
-        navLinkRef.current?.classList.add(
-          "bg-white",
-          "shadow-sm",
-          "bg-opacity-50",
-          "dark:border",
-          "dark:border-white/30",
-          "dark:bg-transparent"
-        );
+        setIsScrolled(false);
       }
     };
 
@@ -88,8 +56,11 @@ export default function Navbar() {
       </div>
 
       <nav
-        ref={navRef}
-        className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50"
+        className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${
+          isScrolled
+            ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20"
+            : ""
+        }`}
       >
         <a href="#!">
           <img
@@ -105,8 +76,11 @@ export default function Navbar() {
         </a>
 
         <ul
-          ref={navLinkRef}
-          className="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo dark:border dark:border-white/30 dark:bg-transparent "
+          className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 font-Ovo ${
+            isScrolled
+              ? ""
+              : "bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/30 dark:bg-transparent"
+          }`}
         >
           <li>
             <a
@@ -192,7 +166,6 @@ export default function Navbar() {
         </div>
         {/* -- ----- mobile menu ------  -- */}
         <ul
-          ref={sideMenuRef}
           className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white ${
             isMenuOpen ? "right-0" : "-right-64"
           }`}
