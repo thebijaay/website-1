@@ -29,7 +29,7 @@ export default function Header() {
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
       <img
-        src="/assets/user-image.png"
+        src="/assets/dev-icon.png"
         alt="Profile"
         className="rounded-full w-32"
       />
