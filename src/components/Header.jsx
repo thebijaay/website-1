@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Header() {
   const headerRef = useRef(null);
-  const [time, setTime] = useState("");
 
   useEffect(() => {
     const el = headerRef.current;
@@ -23,35 +22,12 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Nepal Time Logic
-  useEffect(() => {
-    const updateTime = () => {
-      const nepalTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "Asia/Kathmandu",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-      setTime(nepalTime);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div
       id="top"
       ref={headerRef}
       className="header-slide w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4"
     >
-      {/* Nepal Time Display */}
-      <div className="absolute top-24 right-10 text-sm font-Ovo">
-        🇳🇵 {time}
-      </div>
-
       <img
         src="/assets/user-image.png"
         alt="Profile"
