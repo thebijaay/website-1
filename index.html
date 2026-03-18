@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/assets/dev-icon.png" />
@@ -22,10 +22,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN (if you are using Vite + Tailwind, you can skip this) -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class', // ensure dark mode uses "class" on <html>
       theme: {
         extend: {
           colors: {
@@ -50,7 +51,7 @@
   </script>
 </head>
 
-<body class="overflow-x-hidden font-outfit leading-8 bg-lightBg text-lightText dark:bg-darkBg dark:via-darkBgMid dark:text-darkText min-h-screen">
+<body class="overflow-x-hidden font-outfit leading-8 bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText min-h-screen">
   <div id="root"></div>
 
   <!-- Vite Entry -->
