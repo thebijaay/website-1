@@ -1,49 +1,81 @@
 export default function Footer() {
-    return (
-        <div className="mt-20">
-            <div className="text-center">
-                <a href="#top">
-                    <img src="/assets/logo.png" alt="" className="w-36 mx-auto mb-2 dark:hidden" />
-                    <img src="/assets/logo_dark.png" alt="" className="w-36 mx-auto mb-2 hidden dark:block" />
-                </a>
+  return (
+    <div className="mt-20">
+      <div className="text-center">
+        <a href="#top">
+          <img
+            src="/assets/logo.png"
+            alt="Logo"
+            className="w-36 mx-auto mb-2 dark:hidden"
+          />
+          <img
+            src="/assets/logo_dark.png"
+            alt="Logo"
+            className="w-36 mx-auto mb-2 hidden dark:block"
+          />
+        </a>
 
-                <div className="w-max flex items-center gap-2 mx-auto">
-                    <img src="/assets/mail_icon.png" alt="" className="w-5 dark:hidden" />
-                    <img src="/assets/mail_icon_dark.png" alt="" className="w-5 hidden dark:block" />
+        <div className="w-max flex items-center gap-2 mx-auto">
+          <img src="/assets/mail_icon.png" alt="" className="w-5 dark:hidden" />
+          <img
+            src="/assets/mail_icon_dark.png"
+            alt=""
+            className="w-5 hidden dark:block"
+          />
 
-                    <a href="mailto:contact@kiran-pokhrel.com.np">
-                        contact@kiran-pokhrel.com.np
-                    </a>
-                </div>
-            </div>
-
-            <div className="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-3">
-                <p>
-                    © {new Date().getFullYear()}{" "}
-                    <a href="https://kiran-pokhrel.com.np" target="_blank">
-                        Kiran Pokhrel
-                    </a>{" "}
-                    • Distributed by{" "}
-                    <a href="https://kiran-pokhrel.com.np" target="_blank">
-                        Kiran Pokhrel
-                    </a>{" "}
-                    • All rights reserved.
-                </p>
-
-                <ul className="flex items-center gap-10 justify-center mt-4 sm:mt-0">
-                    <li>
-                        <a
-                            href="https://github.com/pokhrelkiran321-commits"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            GitHub
-                        </a>
-                    </li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Twitter</a></li>
-                </ul>
-            </div>
+          <a href="mailto:contact@kiran-pokhrel.com.np">
+            contact@kiran-pokhrel.com.np
+          </a>
         </div>
-    );
+      </div>
+
+      {/* Bottom Section */}
+      <div className="relative z-10 text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-3">
+        <p>
+          © {new Date().getFullYear()}{" "}
+          <a
+            href="https://kiran-pokhrel.com.np"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kiran Pokhrel
+          </a>{" "}
+          • Distributed by{" "}
+          <a
+            href="https://kiran-pokhrel.com.np"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kiran Pokhrel
+          </a>{" "}
+          • All rights reserved.
+        </p>
+
+        <ul className="flex items-center gap-10 justify-center mt-4 sm:mt-0">
+          <li>
+            <a
+              href="https://github.com/pokhrelkiran321-commits"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-500 transition duration-300"
+            >
+              GitHub
+            </a>
+          </li>
+
+          <li>
+            <a href="#" className="hover:text-gray-500 transition duration-300">
+              LinkedIn
+            </a>
+          </li>
+
+          <li>
+            <a href="#" className="hover:text-gray-500 transition duration-300">
+              Twitter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 }
